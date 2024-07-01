@@ -33,15 +33,21 @@ const render = () => {
     }
 }
 const handleClick = (event) => {
-    const index = parseInt(event.target.id);
+    const index = Number(event.target.id); 
     if (board[index] === '' && !winner) {
         board[index] = turn;
-        turn = turn === 'X' ? 'O' : 'X';
+        if (turn === 'X') {
+            turn = 'O';
+        } else {
+            turn = 'X';
+        }
         Winner();
         checkTie();
         render();
     }
 }
+
+
 const Winner = () => {
     const winningCombos = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8], 
